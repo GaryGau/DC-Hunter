@@ -55,7 +55,7 @@ async def monitor_and_analyze():
             all_messages = data.get("all_messages", [])
             analysis_status = data.get("analysis_status", "pending")
 
-        if user_id and len(all_messages) >= 10 and analysis_status == "pending":
+        if user_id and len(all_messages) >= 9 and analysis_status == "pending":
             print(f"Running analysis for user_id={user_id} ...")
             await analysis.run_analysis(user_id)
 

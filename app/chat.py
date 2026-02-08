@@ -81,7 +81,7 @@ def setup(bot: discord.Bot):
 
     @bot.event
     async def on_member_join(member):
-        WELCOME_CHANNEL_ID = 1469663806870524127
+        WELCOME_CHANNEL_ID = 1469930144172085349
         ai_chat = bot.get_channel(WELCOME_CHANNEL_ID)
         if not ai_chat:
             return
@@ -135,7 +135,7 @@ def setup(bot: discord.Bot):
         if user_id != data.get("user_id"):
             return
 
-        if data["user_count"].get(user_id, 0) >= 10:
+        if data["user_count"].get(user_id, 0) >= 9:
             await message.reply("你已完成 10 次對話，之後將進行分析。")
             return
 
@@ -146,7 +146,7 @@ def setup(bot: discord.Bot):
 
         thinking_msg = await message.reply("Thinking~~~")
         try:
-            remaining = 10 - data["user_count"].get(user_id, 0)
+            remaining = 9 - data["user_count"].get(user_id, 0)
             answer = await asyncio.wait_for(generate_reply(prompt, remaining=remaining), timeout=30.0)
         except Exception as e:
             logging.error(f"AI reply error: {e}")
